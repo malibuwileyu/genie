@@ -1,0 +1,224 @@
+# Genie — Code Spring Hackathon
+
+## ⏰ Deadline: December 30, 2025 (12 days)
+## 🔗 Hackathon: https://code-spring.devpost.com/
+## 📁 Dossier: ../README.md
+
+---
+
+## Project Summary
+
+**Genie** combines two productivity features:
+1. **Context Resurrection** — Saves your mental state when interrupted (open tabs, files, clipboard, cursor position)
+2. **Curiosity Capture** — "I wish I knew about X" → queues research, delivers mini-articles later
+
+**Tagline:** "Never lose a thought again"
+
+---
+
+## Submission Checklist
+
+### Required
+- [ ] README.md — Description, setup instructions, features, screenshots
+- [ ] Demo Video — Show both features working, keep under 5 min
+- [ ] Working App — Downloadable JAR or installer
+- [ ] Code Repo — Public GitHub
+
+### Demo Video Must Show
+- [ ] Global hotkey triggering context save
+- [ ] Context restore showing what you were doing
+- [ ] "I wish" capture via voice or text
+- [ ] Research article delivery
+- [ ] System tray icon and menu
+
+---
+
+## Platform & Stack
+
+**Platform**: Desktop Menubar App (cross-platform: Mac, Windows, Linux)
+**Why**: Needs global hotkeys, clipboard access, file system access
+
+| Layer | Technology | Notes |
+|-------|------------|-------|
+| Language | Java 17+ | LTS, good tooling |
+| UI Framework | JavaFX 21 | Modern, CSS-styleable |
+| System Tray | java.awt.SystemTray | Built-in |
+| Global Hotkeys | JNativeHook | Cross-platform native hooks |
+| Local Storage | SQLite (JDBC) | Lightweight, file-based |
+| AI | OpenAI API (GPT-4o-mini) | Research article generation |
+| Build | Maven | Standard, well-supported |
+| Packaging | jpackage | Bundles JRE, creates installers |
+
+---
+
+## Judging Strategy
+
+| Criterion | Weight | Our Approach |
+|-----------|--------|--------------|
+| Innovation | High | Nothing combines context save + curiosity capture. Novel concept. |
+| Execution | High | Focus on core features working flawlessly. Polish > feature count. |
+| Design | High | Clean, minimal UI. System tray should feel native. Modern JavaFX CSS. |
+
+---
+
+## Feature Priorities
+
+### MVP (Must Ship)
+- [ ] System tray icon with menu
+- [ ] Global hotkey: Save context (Cmd/Ctrl+Shift+S)
+- [ ] Global hotkey: "I wish" (Cmd/Ctrl+Shift+W)
+- [ ] Context capture: clipboard, active window title
+- [ ] Context restore: show summary popup
+- [ ] Wish queue: text input, list view
+- [ ] AI research: generate 2-3 paragraph article per wish
+- [ ] Settings: API key input
+
+### Nice to Have
+- [ ] Voice input for wishes (Java Speech API or cloud)
+- [ ] Browser tab capture (requires companion extension)
+- [ ] Interrupt analytics
+- [ ] Spaced repetition for wishes
+- [ ] Export to Obsidian/Notion
+
+### Won't Do (v1)
+- [ ] Full browser extension
+- [ ] Mobile app
+- [ ] Team/sync features
+
+---
+
+## File Structure
+
+```
+genie/
+├── .cursorrules              # This file
+├── README.md                 # Project documentation
+├── SUBMISSION.md             # Devpost submission draft
+├── pom.xml                   # Maven build config
+├── docs/
+│   └── demo-script.md        # Video demo outline
+└── src/main/
+    ├── java/com/genie/
+    │   ├── Genie.java        # Main entry point
+    │   ├── ui/
+    │   │   ├── TrayManager.java
+    │   │   ├── ContextPopup.java
+    │   │   ├── WishPanel.java
+    │   │   └── SettingsDialog.java
+    │   ├── core/
+    │   │   ├── ContextCapture.java
+    │   │   ├── ContextStore.java
+    │   │   ├── WishQueue.java
+    │   │   └── HotkeyManager.java
+    │   ├── ai/
+    │   │   └── OpenAIClient.java
+    │   └── util/
+    │       ├── Config.java
+    │       └── Database.java
+    └── resources/
+        ├── styles/
+        │   └── main.css
+        ├── icons/
+        │   ├── tray-icon.png
+        │   └── genie-logo.png
+        └── application.properties
+```
+
+---
+
+## Reminders
+
+### On Every Feature Completion
+- Update README with new feature
+- Take screenshot for submission
+- Note anything demo-worthy
+
+### December 27 (3 days before)
+- [ ] Core features working
+- [ ] Start demo video script
+- [ ] Test on both Mac and Windows if possible
+- [ ] Create downloadable JAR/installer
+
+### December 29 (1 day before)
+- [ ] Record demo video
+- [ ] Final README polish with screenshots
+- [ ] Fill Devpost submission form (don't submit yet)
+- [ ] Get someone to test the download + install
+
+### December 30 (Submission Day)
+- [ ] Final testing
+- [ ] Submit before deadline (buffer time!)
+- [ ] Celebrate 🎉
+
+---
+
+## Key Dependencies
+
+```xml
+<!-- pom.xml dependencies -->
+<dependencies>
+    <!-- JavaFX -->
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-controls</artifactId>
+        <version>21</version>
+    </dependency>
+    
+    <!-- Global Hotkeys -->
+    <dependency>
+        <groupId>com.github.kwhat</groupId>
+        <artifactId>jnativehook</artifactId>
+        <version>2.2.2</version>
+    </dependency>
+    
+    <!-- SQLite -->
+    <dependency>
+        <groupId>org.xerial</groupId>
+        <artifactId>sqlite-jdbc</artifactId>
+        <version>3.44.1.0</version>
+    </dependency>
+    
+    <!-- HTTP Client for OpenAI -->
+    <dependency>
+        <groupId>com.squareup.okhttp3</groupId>
+        <artifactId>okhttp</artifactId>
+        <version>4.12.0</version>
+    </dependency>
+    
+    <!-- JSON -->
+    <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>2.10.1</version>
+    </dependency>
+</dependencies>
+```
+
+---
+
+## API Keys Required
+
+- **OpenAI API Key** — For research article generation
+  - Get from: https://platform.openai.com/api-keys
+  - Model: gpt-4o-mini (cheap, fast, good enough)
+  - Store in: User preferences (encrypted) or environment variable
+
+---
+
+## Useful Commands
+
+```bash
+# Build
+mvn clean package
+
+# Run
+mvn javafx:run
+
+# Create installer (after build)
+jpackage --input target/ \
+  --name Genie \
+  --main-jar genie.jar \
+  --main-class com.genie.Genie \
+  --type dmg  # or exe, msi, deb, rpm
+```
+
