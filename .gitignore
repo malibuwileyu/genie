@@ -1,3 +1,73 @@
+# Maven
 target/
-*.dmg
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Build artifacts
 *.jar
+*.war
+*.ear
+*.class
+
+# macOS installer
+*.dmg
+*.app/
+
+# IDE - IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# IDE - Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# IDE - VS Code
+.vscode/
+*.code-workspace
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Logs
+*.log
+logs/
+
+# Local configuration (API keys, etc.)
+.env
+.env.local
+*.properties.local
+
+# SQLite databases (user data)
+*.db
+*.sqlite
+
+# Screenshots directory (created at runtime)
+screenshots/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*~
+
+# JNativeHook native libraries (downloaded at build)
+*.dylib
+*.so
+*.dll
