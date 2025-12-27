@@ -67,7 +67,7 @@ Built for [Code Spring Hackathon](https://code-spring.devpost.com/) | Productivi
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/genie.git
+git clone https://github.com/malibuwileyu/genie.git
 cd genie
 
 # Build
